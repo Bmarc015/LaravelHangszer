@@ -7,3 +7,39 @@
 
 ### teszt
 get {{host}}/api/
+
+### get
+get {{host}}/api/instruments
+
+
+### get products by id
+get {{host}}/api/instruments/3
+
+### post 
+POST  {{host}}/api/instruments
+Accept: application/json
+Content-Type: application/json
+ 
+{
+    "name": "Karamel",
+    "description": "Kézzel termelt folyás",
+    "brand": "farkkas",
+    "price": 8012400,
+    "stock": 50023
+}
+
+### delete
+
+DELETE {{host}}/api/instruments/14
+Accept: application/json
+Content-Type: application/json
+
+### patch
+PATCH {{host}}/api/instruments/9
+Accept: application/json
+Content-Type: application/json
+ 
+{
+    "price": 1,
+    "quantity": 2
+}

@@ -21,7 +21,7 @@ class InstrumentPolicy
      */
     public function view(User $user, Instrument $instrument): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -29,7 +29,7 @@ class InstrumentPolicy
      */
     public function create(User $user): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -37,7 +37,7 @@ class InstrumentPolicy
      */
     public function update(User $user, Instrument $instrument): bool
     {
-        return false;
+        return true;
     }
 
     /**

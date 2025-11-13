@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\DB;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,5 +24,6 @@ class AppServiceProvider extends ServiceProvider
         //
         // Az alapértelmezett string hossza 191 karakterre csökkentése
         Schema::defaultStringLength(191);
+        DB::statement("SET NAMES 'utf8mb4'");
     }
 }
