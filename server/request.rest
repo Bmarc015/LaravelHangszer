@@ -25,7 +25,7 @@ Content-Type: application/json
     "description": "Kézzel termelt folyás",
     "brand": "farkkas",
     "price": 8012400,
-    "stock": 50023
+    "quantity": 50023
 }
 
 ### delete
