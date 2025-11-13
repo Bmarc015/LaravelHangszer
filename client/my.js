@@ -78,7 +78,7 @@ createApp({
         // PUT művelet a meglévő termék frissítésére
         async updateInstruments(id, updatedData) {
             const url = `${this.urlApi}/instruments/${id}`;
-            const method = "PUT";
+            const method = "PATCH";
             const body = JSON.stringify(updatedData);
             const headers = {
                 "Accept": "application/json",
@@ -89,9 +89,12 @@ createApp({
                 const response = await fetch(url, {
                     method: method,
                     headers: headers,
-                    body: body
+                    body: body,
+
+
                 });
                 if (!response.ok) {
+
                     throw new Error(`Response status: ${response.status}`);
                 }
 
@@ -169,21 +172,43 @@ createApp({
 
         // Termékadatok betöltése ID alapján az UPDATE formhoz
         async fetchProductData() {
-            if (!this.updateProduct.id) return;
+            if (!this.updateProduct.id) return; // ha nincs ID, nem csinálunk semmit
 
             const url = `${this.urlApi}/instruments/${this.updateProduct.id}`;
             try {
                 const response = await fetch(url);
                 if (!response.ok) {
-                    throw new Error(`Response status: ${response.status}`);
+                    // ha pl. 404, akkor töröljük a korábbi adatokat
+                    throw new Error(`Nincs ilyen hangszer (ID: ${this.updateProduct.id})`);
                 }
 
                 const productData = await response.json();
-                // A termékadatokat betöltjük a formba
-                this.updateProduct = { ...productData }; // Ezt a terméket frissítjük
+
+                // Ha az API válasza 'data' kulcs alatt adja az adatot (Laravel resource esetén)
+                const data = productData.data ? productData.data : productData;
+
+                // Az ID megmarad, a többi mező feltöltődik
+                this.updateProduct = { ...this.updateProduct, ...data };
+
+                console.log("Betöltött hangszer:", this.updateProduct);
+
             } catch (error) {
                 console.error("API hiba:", error.message);
+
+                // Üzenet a felhasználónak
+                alert("Nem található hangszer a megadott ID-val.");
+
+                // ürítsük ki a mezőket, de az ID maradjon meg
+                this.updateProduct = {
+                    id: this.updateProduct.id,
+                    name: '',
+                    description: '',
+                    brand: '',
+                    price: '',
+                    quantity: ''
+                };
             }
         }
+
     }
 }).mount('#app');
