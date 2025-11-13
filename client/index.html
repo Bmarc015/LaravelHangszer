@@ -14,27 +14,27 @@
         <!-- Gombok a form megjelenítéséhez -->
         <div class="row mb-3">
             <div class="col-auto">
-                <button @click="toggleForm" class="btn btn-primary">Termék Hozzáadása</button>
+                <button @click="toggleForm" class="btn btn-primary">Hangszer Hozzáadása</button>
             </div>
             <div class="col-auto">
-                <button @click="toggleUpdateForm" class="btn btn-warning">UPDATE Termék</button>
+                <button @click="toggleUpdateForm" class="btn btn-warning">Hangszer Frissítése</button>
             </div>
             <div class="col-auto">
-                <button @click="toggleDeleteForm" class="btn btn-danger">DELETE Termék</button>
+                <button @click="toggleDeleteForm" class="btn btn-danger">Hangszer Törlése</button>
             </div>
         </div>
 
         <!-- GET Termékek gomb -->
         <div class="row mb-3">
             <div class="col-auto">
-                <button @click="onClickButtonHangszerek" class="btn btn-primary">GET Termékek</button>
+                <button @click="onClickButtonHangszerek" class="btn btn-primary">Összes Hangszer</button>
             </div>
         </div>
 
         <!-- Termék hozzáadása form -->
         <div v-if="isFormVisible" class="card mb-4">
             <div class="card-body">
-                <h5 class="card-title">Új Termék Hozzáadása</h5>
+                <h5 class="card-title">Új Hangszer Hozzáadása</h5>
                 <form @submit.prevent="onClickButtonPost">
                     <div class="mb-3">
                         <label for="name" class="form-label">Név</label>
@@ -56,7 +56,7 @@
                         <label for="quantity" class="form-label">Raktárkészlet</label>
                         <input type="number" id="quantity" class="form-control" v-model="newProduct.quantity" required>
                     </div>
-                    <button type="submit" class="btn btn-success">Termék Hozzáadása</button>
+                    <button type="submit" class="btn btn-success">Hangszer Hozzáadása</button>
                 </form>
             </div>
         </div>
@@ -64,10 +64,10 @@
         <!-- UPDATE form -->
         <div v-if="isUpdateVisible" class="card mb-4">
             <div class="card-body">
-                <h5 class="card-title">Termék Frissítése</h5>
+                <h5 class="card-title">Hangszer Frissítése</h5>
                 <form @submit.prevent="onClickButtonUpdate">
                     <div class="mb-3">
-                        <label for="updateId" class="form-label">Termék ID</label>
+                        <label for="updateId" class="form-label">Hangszer ID</label>
                         <input type="number" id="updateId" class="form-control" v-model="updateProduct.id" @blur="fetchProductData" required>
                     </div>
                     <div class="mb-3">
@@ -90,7 +90,7 @@
                         <label for="updateQuantity" class="form-label">Raktárkészlet</label>
                         <input type="number" id="updateQuantity" class="form-control" v-model="updateProduct.quantity" required>
                     </div>
-                    <button type="submit" class="btn btn-warning">Termék Frissítése</button>
+                    <button type="submit" class="btn btn-warning">Hangszer Frissítése</button>
                 </form>
             </div>
         </div>
@@ -98,13 +98,13 @@
         <!-- DELETE form -->
         <div v-if="isDeleteVisible" class="card mb-4">
             <div class="card-body">
-                <h5 class="card-title">Termék Törlése</h5>
+                <h5 class="card-title">Hangszer Törlése</h5>
                 <form @submit.prevent="onClickButtonDelete">
                     <div class="mb-3">
-                        <label for="deleteId" class="form-label">Termék ID</label>
+                        <label for="deleteId" class="form-label">Hangszer ID</label>
                         <input type="number" id="deleteId" class="form-control" v-model="deleteProductId" required>
                     </div>
-                    <button type="submit" class="btn btn-danger">Termék Törlése</button>
+                    <button type="submit" class="btn btn-danger">Hangszer Törlése</button>
                 </form>
             </div>
         </div>
